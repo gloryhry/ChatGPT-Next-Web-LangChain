@@ -7,7 +7,6 @@ import { getRandomUserAgent } from "./ua_tools";
 interface SearchResults {
   /** The web results of the search. */
   results: SearchResult[];
-  noResults: boolean;
 }
 
 interface SearchResult {
@@ -28,7 +27,6 @@ async function search(
 ): Promise<SearchResults> {
   const results: SearchResults = {
     results: [],
-    noResults: false,
   };
   const headers = new Headers();
   headers.append("User-Agent", getRandomUserAgent());
@@ -66,7 +64,7 @@ export class GoogleSearch extends Tool {
   async _call(input: string) {
     const searchResults = await search(input, this.maxResults);
 
-    if (searchResults.noResults) {
+    if (searchResults.results.length === 0) {
       return "No good search result found";
     }
 
