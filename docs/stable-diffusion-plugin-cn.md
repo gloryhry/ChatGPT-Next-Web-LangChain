@@ -24,19 +24,19 @@
 
   采样迭代步数(Steps)，默认值：`20`
 
-- `STABLE_DIFFUSION_CFG_SCALE`
+- `STABLE_DIFFUSION_CFG_SCALE`（可选）
 
   提示词相关性(CFG Scale)，默认值：`7`
 
-- `STABLE_DIFFUSION_WIDTH`
+- `STABLE_DIFFUSION_WIDTH`（可选）
 
   生成图像宽度，默认值：`720`
 
-- `STABLE_DIFFUSION_HEIGHT`
+- `STABLE_DIFFUSION_HEIGHT`（可选）
 
   生成图像高度，默认值：`720`
 
-- `STABLE_DIFFUSION_SAMPLER_INDEX`
+- `STABLE_DIFFUSION_SAMPLER_INDEX`（可选）
 
   采样方法(Sampler)，默认值：`Euler a`
 
@@ -62,7 +62,7 @@
 
 ## 示例
 
-![image-20231017124240846](E:\projects\private\ChatGPT-Next-Web\docs\images\plugin\sd-plugin-example.png)
+![image-20231017124240846](./images/plugin/sd-plugin-example.png)
 
 模型：[GhostMix - v2.0-BakedVAE | Stable Diffusion Checkpoint | Civitai](https://civitai.com/models/36520/ghostmix)
 
