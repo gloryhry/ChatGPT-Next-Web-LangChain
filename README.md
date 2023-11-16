@@ -3,7 +3,15 @@
 
 <h1 align="center">ChatGPT Next Web LangChain</h1>
 
+<<<<<<< HEAD
 一键免费部署你的跨平台私人 ChatGPT 应用（基于 LangChain 实现插件功能）。
+=======
+English / [简体中文](./README_CN.md)
+
+One-Click to get well-designed cross-platform ChatGPT web UI.
+
+一键免费部署你的跨平台私人 ChatGPT 应用。
+>>>>>>> 9876a1aeca71610841af5585d7baeba3126a8df9
 
 [![Web][Web-image]][web-url]
 [![Windows][Windows-image]][download-url]
@@ -33,6 +41,40 @@
 
 </div>
 
+<<<<<<< HEAD
+=======
+## Features
+
+- **Deploy for free with one-click** on Vercel in under 1 minute
+- Compact client (~5MB) on Linux/Windows/MacOS, [download it now](https://github.com/Yidadaa/ChatGPT-Next-Web/releases)
+- Fully compatible with self-deployed llms, recommended for use with [RWKV-Runner](https://github.com/josStorer/RWKV-Runner) or [LocalAI](https://github.com/go-skynet/LocalAI)
+- Privacy first, all data stored locally in the browser
+- Markdown support: LaTex, mermaid, code highlight, etc.
+- Responsive design, dark mode and PWA
+- Fast first screen loading speed (~100kb), support streaming response
+- New in v2: create, share and debug your chat tools with prompt templates (mask)
+- Awesome prompts powered by [awesome-chatgpt-prompts-zh](https://github.com/PlexPt/awesome-chatgpt-prompts-zh) and [awesome-chatgpt-prompts](https://github.com/f/awesome-chatgpt-prompts)
+- Automatically compresses chat history to support long conversations while also saving your tokens
+- I18n: English, 简体中文, 繁体中文, 日本語, Français, Español, Italiano, Türkçe, Deutsch, Tiếng Việt, Русский, Čeština, 한국어, Indonesia
+
+## Roadmap
+
+- [x] System Prompt: pin a user defined prompt as system prompt [#138](https://github.com/Yidadaa/ChatGPT-Next-Web/issues/138)
+- [x] User Prompt: user can edit and save custom prompts to prompt list
+- [x] Prompt Template: create a new chat with pre-defined in-context prompts [#993](https://github.com/Yidadaa/ChatGPT-Next-Web/issues/993)
+- [x] Share as image, share to ShareGPT [#1741](https://github.com/Yidadaa/ChatGPT-Next-Web/pull/1741)
+- [x] Desktop App with tauri
+- [x] Self-host Model: Fully compatible with [RWKV-Runner](https://github.com/josStorer/RWKV-Runner), as well as server deployment of [LocalAI](https://github.com/go-skynet/LocalAI): llama/gpt4all/rwkv/vicuna/koala/gpt4all-j/cerebras/falcon/dolly etc.
+- [ ] Plugins: support network search, calculator, any other apis etc. [#165](https://github.com/Yidadaa/ChatGPT-Next-Web/issues/165)
+
+## What's New
+
+- 🚀 v2.0 is released, now you can create prompt templates, turn your ideas into reality! Read this: [ChatGPT Prompt Engineering Tips: Zero, One and Few Shot Prompting](https://www.allabtai.com/prompt-engineering-tips-zero-one-and-few-shot-prompting/).
+- 🚀 v2.7 let's share conversations as image, or share to ShareGPT!
+- 🚀 v2.8 now we have a client that runs across all platforms!
+- 🚀 v2.9.11 you can use azure endpoint now.
+
+>>>>>>> 9876a1aeca71610841af5585d7baeba3126a8df9
 ## 主要功能
 
 - 除插件工具外，与原项目保持一致 [ChatGPT-Next-Web 主要功能](https://github.com/Yidadaa/ChatGPT-Next-Web#主要功能)
@@ -88,9 +130,17 @@
 
 ## 最新动态
 
+<<<<<<< HEAD
 - 🚀 v2.9.6 版本发布
 - 🚀 v2.9.5 正式版本发布
 - 🚀 v2.9.1-plugin-preview 预览版发布。
+=======
+- 🚀 v2.0 已经发布，现在你可以使用面具功能快速创建预制对话了！ 了解更多： [ChatGPT 提示词高阶技能：零次、一次和少样本提示](https://github.com/Yidadaa/ChatGPT-Next-Web/issues/138)。
+- 💡 想要更方便地随时随地使用本项目？可以试下这款桌面插件：https://github.com/mushan0x0/AI0x0.com
+- 🚀 v2.7 现在可以将会话分享为图片了，也可以分享到 ShareGPT 的在线链接。
+- 🚀 v2.8 发布了横跨 Linux/Windows/MacOS 的体积极小的客户端。
+- 🚀 v2.9.11 现在可以使用自定义 Azure 服务了。
+>>>>>>> 9876a1aeca71610841af5585d7baeba3126a8df9
 
 ## 开始使用
 
@@ -126,14 +176,19 @@ code1,code2,code3
 
 > 本项目大多数配置项都通过环境变量来设置，教程：[如何修改 Vercel 环境变量](./docs/vercel-cn.md)。
 
+<<<<<<< HEAD
 ### `OPENAI_API_KEY` （必填项）
 
 OpanAI 密钥，你在 openai 账户页面申请的 api key。
 
 ### `SERPAPI_API_KEY` (可选)
+=======
+### `CODE` (optional)
+>>>>>>> 9876a1aeca71610841af5585d7baeba3126a8df9
 
 [SerpApi: Google Search API](https://serpapi.com/)
 
+<<<<<<< HEAD
 ### `BING_SEARCH_API_KEY` (可选)
 
 [Web Search API | Microsoft Bing](https://www.microsoft.com/en-us/bing/apis/bing-web-search-api)
@@ -154,6 +209,13 @@ OpanAI 密钥，你在 openai 账户页面申请的 api key。
 **警告**：如果不填写此项，则任何人都可以直接使用你部署后的网站，可能会导致你的 token 被急速消耗完毕，建议填写此选项。
 
 ### `BASE_URL` （可选）
+=======
+### `OPENAI_API_KEY` (required)
+
+Your openai api key.
+
+### `BASE_URL` (optional)
+>>>>>>> 9876a1aeca71610841af5585d7baeba3126a8df9
 
 > Default: `https://api.openai.com`
 
@@ -165,7 +227,25 @@ OpenAI 接口代理 URL，如果你手动配置了 openai 接口代理，请填�
 
 ### `OPENAI_ORG_ID` （可选）
 
+<<<<<<< HEAD
 指定 OpenAI 中的组织 ID。
+=======
+### `AZURE_URL` (optional)
+
+> Example: https://{azure-resource-url}/openai/deployments/{deploy-name}
+
+Azure deploy url.
+
+### `AZURE_API_KEY` (optional)
+
+Azure Api Key.
+
+### `AZURE_API_VERSION` (optional)
+
+Azure Api Version, find it at [Azure Documentation](https://learn.microsoft.com/en-us/azure/ai-services/openai/reference#chat-completions).
+
+### `HIDE_USER_API_KEY` (optional)
+>>>>>>> 9876a1aeca71610841af5585d7baeba3126a8df9
 
 ### `HIDE_USER_API_KEY` （可选）
 
@@ -191,9 +271,16 @@ Cloudflare R2 访问密钥 ID，使用 `DALL-E` 插件时需要配置。
 
 Cloudflare R2 机密访问密钥，使用 `DALL-E` 插件时需要配置。
 
+<<<<<<< HEAD
 ### `R2_BUCKET` （可选）
 
 Cloudflare R2 Bucket 名称，使用 `DALL-E` 插件时需要配置。
+=======
+> Default: Empty
+> Example: `+llama,+claude-2,-gpt-3.5-turbo,gpt-4-1106-preview:gpt-4-turbo` means add `llama, claude-2` to model list, and remove `gpt-3.5-turbo` from list, and display `gpt-4-1106-preview` as `gpt-4-turbo`.
+
+To control custom models, use `+` to add a custom model, use `-` to hide a model, use `name:displayName` to customize model name, separated by comma.
+>>>>>>> 9876a1aeca71610841af5585d7baeba3126a8df9
 
 ## 部署
 
@@ -250,6 +337,49 @@ docker run -d -p 3000:3000 \
 
 [请项目原作者喝杯咖啡](https://www.buymeacoffee.com/yidadaa)
 
+<<<<<<< HEAD
 ## 开源协议
+=======
+## Donation
+
+[Buy Me a Coffee](https://www.buymeacoffee.com/yidadaa)
+
+## Special Thanks
+
+### Sponsor
+
+> 仅列出捐赠金额 >= 100RMB 的用户。
+
+[@mushan0x0](https://github.com/mushan0x0)
+[@ClarenceDan](https://github.com/ClarenceDan)
+[@zhangjia](https://github.com/zhangjia)
+[@hoochanlon](https://github.com/hoochanlon)
+[@relativequantum](https://github.com/relativequantum)
+[@desenmeng](https://github.com/desenmeng)
+[@webees](https://github.com/webees)
+[@chazzhou](https://github.com/chazzhou)
+[@hauy](https://github.com/hauy)
+[@Corwin006](https://github.com/Corwin006)
+[@yankunsong](https://github.com/yankunsong)
+[@ypwhs](https://github.com/ypwhs)
+[@fxxxchao](https://github.com/fxxxchao)
+[@hotic](https://github.com/hotic)
+[@WingCH](https://github.com/WingCH)
+[@jtung4](https://github.com/jtung4)
+[@micozhu](https://github.com/micozhu)
+[@jhansion](https://github.com/jhansion)
+[@Sha1rholder](https://github.com/Sha1rholder)
+[@AnsonHyq](https://github.com/AnsonHyq)
+[@synwith](https://github.com/synwith)
+[@piksonGit](https://github.com/piksonGit)
+[@ouyangzhiping](https://github.com/ouyangzhiping)
+[@wenjiavv](https://github.com/wenjiavv)
+
+### Contributor
+
+[Contributors](https://github.com/Yidadaa/ChatGPT-Next-Web/graphs/contributors)
+
+## LICENSE
+>>>>>>> 9876a1aeca71610841af5585d7baeba3126a8df9
 
 [MIT](https://opensource.org/license/mit/)
