@@ -2,7 +2,7 @@
 <img src="./docs/images/icon.svg" alt="icon"/>
 
 <h1 align="center">ChatGPT Next Web</h1>
-
+ 
 English / [简体中文](./README_CN.md)
 
 One-Click to get well-designed cross-platform ChatGPT web UI.
