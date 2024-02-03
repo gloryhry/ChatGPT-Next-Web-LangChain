@@ -118,7 +118,6 @@ export const KnowledgeCutOffDate: Record<string, string> = {
 };
 
 export const DEFAULT_MODELS = [
-  /*
   {
     name: "gpt-4",
     available: true,
@@ -128,6 +127,7 @@ export const DEFAULT_MODELS = [
       providerType: "openai",
     },
   },
+  /*
   {
     name: "gpt-4-0613",
     available: true,
@@ -137,7 +137,6 @@ export const DEFAULT_MODELS = [
       providerType: "openai",
     },
   },
-  */
   {
     name: "gpt-4-32k",
     available: true,
@@ -147,6 +146,7 @@ export const DEFAULT_MODELS = [
       providerType: "openai",
     },
   },
+  */
   {
     name: "gpt-4-32k-0613",
     available: true,
@@ -194,7 +194,6 @@ export const DEFAULT_MODELS = [
       providerType: "openai",
     },
   },
-  /*
   {
     name: "gpt-3.5-turbo",
     available: true,
@@ -204,7 +203,6 @@ export const DEFAULT_MODELS = [
       providerType: "openai",
     },
   },
-  */
   {
     name: "gpt-3.5-turbo-0125",
     available: true,
