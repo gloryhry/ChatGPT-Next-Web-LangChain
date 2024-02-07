@@ -6,7 +6,6 @@ import { ModelConfig, ModelType, useAppConfig } from "./config";
 import { createEmptyMask, Mask } from "./mask";
 import {
   DEFAULT_INPUT_TEMPLATE,
-  DEFAULT_MODELS,
   DEFAULT_SYSTEM_TEMPLATE,
   KnowledgeCutOffDate,
   ModelProvider,
@@ -100,17 +99,10 @@ function countMessages(msgs: ChatMessage[]) {
 }
 
 function fillTemplateWith(input: string, modelConfig: ModelConfig) {
-  const cutoff = KnowledgeCutOffDate[modelConfig.model] ?? KnowledgeCutOffDate.default;
-  // Find the model in the DEFAULT_MODELS array that matches the modelConfig.model
-  const modelInfo = DEFAULT_MODELS.find(m => m.name === modelConfig.model);
-  if (!modelInfo) {
-    throw new Error(`Model ${modelConfig.model} not found in DEFAULT_MODELS array.`);
-  }
-  // Directly use the providerName from the modelInfo
-  const serviceProvider = modelInfo.provider.providerName;
+  let cutoff =
+    KnowledgeCutOffDate[modelConfig.model] ?? KnowledgeCutOffDate.default;
 
   const vars = {
-    ServiceProvider: serviceProvider,
     cutoff,
     model: modelConfig.model,
     time: new Date().toLocaleString(),
@@ -127,8 +119,7 @@ function fillTemplateWith(input: string, modelConfig: ModelConfig) {
   }
 
   Object.entries(vars).forEach(([name, value]) => {
-    const regex = new RegExp(`{{${name}}}`, 'g');
-    output = output.replace(regex, value.toString()); // Ensure value is a string
+    output = output.replaceAll(`{{${name}}}`, value);
   });
 
   return output;
@@ -336,7 +327,7 @@ export const useChatStore = createPersistStore(
           session.mask.usePlugins &&
           allPlugins.length > 0 &&
           modelConfig.model.startsWith("gpt") &&
-          modelConfig.model != "gpt-4-vision-preview"
+          !modelConfig.model.includes("vision")
         ) {
           console.log("[ToolAgent] start");
           const pluginToolNames = allPlugins.map((m) => m.toolName);

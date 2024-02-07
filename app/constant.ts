@@ -66,7 +66,7 @@ export const UNFINISHED_INPUT = (id: string) => "unfinished-input-" + id;
 
 export const STORAGE_KEY = "chatgpt-next-web";
 
-export const REQUEST_TIMEOUT_MS = 60000;
+export const REQUEST_TIMEOUT_MS = 240000;
 
 export const EXPORT_MESSAGE_CLASS_NAME = "export-markdown";
 
@@ -99,7 +99,7 @@ export const Google = {
 
 export const DEFAULT_INPUT_TEMPLATE = `{{input}}`; // input / time / model / lang
 export const DEFAULT_SYSTEM_TEMPLATE = `
-You are ChatGPT, a large language model trained by {{ServiceProvider}}.
+You are ChatGPT, a large language model trained by OpenAI.
 Knowledge cutoff: {{cutoff}}
 Current model: {{model}}
 Current time: {{time}}
@@ -115,9 +115,6 @@ export const KnowledgeCutOffDate: Record<string, string> = {
   "gpt-4-1106-preview": "2023-04",
   "gpt-4-0125-preview": "2023-04",
   "gpt-4-vision-preview": "2023-04",
-  // After improvements,
-  // it's now easier to add "KnowledgeCutOffDate" instead of stupid hardcoding it, as was done previously.
-  "gemini-pro": "2023-12",
 };
 
 export const DEFAULT_MODELS = [
@@ -131,7 +128,7 @@ export const DEFAULT_MODELS = [
     },
   },
   {
-    name: "gpt-4-0613",
+    name: "gpt-4-s",
     available: true,
     provider: {
       id: "openai",
@@ -140,43 +137,7 @@ export const DEFAULT_MODELS = [
     },
   },
   {
-    name: "gpt-4-32k",
-    available: true,
-    provider: {
-      id: "openai",
-      providerName: "OpenAI",
-      providerType: "openai",
-    },
-  },
-  {
-    name: "gpt-4-32k-0613",
-    available: true,
-    provider: {
-      id: "openai",
-      providerName: "OpenAI",
-      providerType: "openai",
-    },
-  },
-  {
-    name: "gpt-4-turbo-preview",
-    available: true,
-    provider: {
-      id: "openai",
-      providerName: "OpenAI",
-      providerType: "openai",
-    },
-  },
-  {
-    name: "gpt-4-1106-preview",
-    available: true,
-    provider: {
-      id: "openai",
-      providerName: "OpenAI",
-      providerType: "openai",
-    },
-  },
-  {
-    name: "gpt-4-0125-preview",
+    name: "gpt-4-mobile",
     available: true,
     provider: {
       id: "openai",
@@ -203,48 +164,39 @@ export const DEFAULT_MODELS = [
     },
   },
   {
-    name: "gpt-3.5-turbo-0125",
+    name: "bing-Creative",
     available: true,
     provider: {
-      id: "openai",
-      providerName: "OpenAI",
-      providerType: "openai",
+      id: "Bing",
+      providerName: "Bing",
+      providerType: "Bing",
     },
   },
   {
-    name: "gpt-3.5-turbo-0613",
+    name: "bing-Balanced",
     available: true,
     provider: {
-      id: "openai",
-      providerName: "OpenAI",
-      providerType: "openai",
+      id: "Bing",
+      providerName: "Bing",
+      providerType: "Bing",
     },
   },
   {
-    name: "gpt-3.5-turbo-1106",
+    name: "bing-Precise",
     available: true,
     provider: {
-      id: "openai",
-      providerName: "OpenAI",
-      providerType: "openai",
+      id: "Bing",
+      providerName: "Bing",
+      providerType: "Bing",
     },
   },
   {
-    name: "gpt-3.5-turbo-16k",
+    name: "bing-Gpt4",
     available: true,
     provider: {
-      id: "openai",
-      providerName: "OpenAI",
-      providerType: "openai",
-    },
-  },
-  {
-    name: "gpt-3.5-turbo-16k-0613",
-    available: true,
-    provider: {
-      id: "openai",
-      providerName: "OpenAI",
-      providerType: "openai",
+      id: "Bing",
+      providerName: "Bing",
+      providerType: "Bing",
     },
   },
   {
@@ -254,6 +206,24 @@ export const DEFAULT_MODELS = [
       id: "google",
       providerName: "Google",
       providerType: "google",
+    },
+  },
+  {
+    name: "coze",
+    available: true,
+    provider: {
+      id: "coze",
+      providerName: "Coze",
+      providerType: "coze",
+    },
+  },
+  {
+    name: "coze-vision",
+    available: true,
+    provider: {
+      id: "coze",
+      providerName: "Coze",
+      providerType: "coze",
     },
   },
 ] as const;

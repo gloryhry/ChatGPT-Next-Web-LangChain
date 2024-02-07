@@ -23,7 +23,7 @@ const timeoutPromise = (timeout) => {
 async function fetchCN() {
   console.log("[Fetch] fetching cn prompts...");
   try {
-    const response = await Promise.race([fetch(CN_URL), timeoutPromise(5000)]);
+    const response = await Promise.race([fetch(CN_URL), timeoutPromise(10000)]);
     const raw = await response.json();
     return raw
       .map((v) => [v.act, v.prompt])
@@ -43,7 +43,7 @@ async function fetchEN() {
   console.log("[Fetch] fetching en prompts...");
   try {
     // const raw = await (await fetch(EN_URL)).text();
-    const response = await Promise.race([fetch(EN_URL), timeoutPromise(5000)]);
+    const response = await Promise.race([fetch(EN_URL), timeoutPromise(10000)]);
     const raw = await response.text();
     return raw
       .split("\n")

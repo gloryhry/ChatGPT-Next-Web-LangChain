@@ -72,6 +72,9 @@ import { nanoid } from "nanoid";
 import { PluginConfigList } from "./plugin-config";
 import { useMaskStore } from "../store/mask";
 import { ProviderType } from "../utils/cloud";
+import { getServerSideConfig } from "../config/server";
+import { access } from "fs";
+const serverSideConfig = getServerSideConfig();
 
 function EditPromptModal(props: { id: string; onClose: () => void }) {
   const promptStore = usePromptStore();
@@ -269,7 +272,7 @@ function CheckButton() {
   const syncStore = useSyncStore();
 
   const couldCheck = useMemo(() => {
-    return syncStore.cloudSync();
+    return syncStore.coundSync();
   }, [syncStore]);
 
   const [checkState, setCheckState] = useState<
@@ -473,7 +476,7 @@ function SyncItems() {
   const promptStore = usePromptStore();
   const maskStore = useMaskStore();
   const couldSync = useMemo(() => {
-    return syncStore.cloudSync();
+    return syncStore.coundSync();
   }, [syncStore]);
 
   const [showSyncConfigModal, setShowSyncConfigModal] = useState(false);
@@ -497,9 +500,8 @@ function SyncItems() {
           title={Locale.Settings.Sync.CloudState}
           subTitle={
             syncStore.lastProvider
-              ? `${new Date(syncStore.lastSyncTime).toLocaleString()} [${
-                  syncStore.lastProvider
-                }]`
+              ? `${new Date(syncStore.lastSyncTime).toLocaleString()} [${syncStore.lastProvider
+              }]`
               : Locale.Settings.Sync.NotSyncYet
           }
         >
@@ -707,8 +709,8 @@ export function Settings() {
               checkingUpdate
                 ? Locale.Settings.Update.IsChecking
                 : hasNewVersion
-                ? Locale.Settings.Update.FoundUpdate(remoteId ?? "ERROR")
-                : Locale.Settings.Update.IsLatest
+                  ? Locale.Settings.Update.FoundUpdate(remoteId ?? "ERROR")
+                  : Locale.Settings.Update.IsLatest
             }
           >
             {checkingUpdate ? (
@@ -841,8 +843,8 @@ export function Settings() {
               onChange={(e) =>
                 updateConfig(
                   (config) =>
-                    (config.dontShowMaskSplashScreen =
-                      !e.currentTarget.checked),
+                  (config.dontShowMaskSplashScreen =
+                    !e.currentTarget.checked),
                 )
               }
             ></input>
@@ -928,12 +930,13 @@ export function Settings() {
                     <input
                       type="checkbox"
                       checked={accessStore.useCustomConfig}
-                      onChange={(e) =>
+                      onChange={(e) => {
                         accessStore.update(
                           (access) =>
                             (access.useCustomConfig = e.currentTarget.checked),
-                        )
+                        );
                       }
+                    }
                     ></input>
                   </ListItem>
                 )
@@ -949,8 +952,8 @@ export function Settings() {
                       onChange={(e) => {
                         accessStore.update(
                           (access) =>
-                            (access.provider = e.target
-                              .value as ServiceProvider),
+                          (access.provider = e.target
+                            .value as ServiceProvider),
                         );
                       }}
                     >
@@ -1053,8 +1056,8 @@ export function Settings() {
                           onChange={(e) =>
                             accessStore.update(
                               (access) =>
-                                (access.azureApiVersion =
-                                  e.currentTarget.value),
+                              (access.azureApiVersion =
+                                e.currentTarget.value),
                             )
                           }
                         ></input>
@@ -1112,8 +1115,8 @@ export function Settings() {
                           onChange={(e) =>
                             accessStore.update(
                               (access) =>
-                                (access.googleApiVersion =
-                                  e.currentTarget.value),
+                              (access.googleApiVersion =
+                                e.currentTarget.value),
                             )
                           }
                         ></input>
@@ -1133,9 +1136,9 @@ export function Settings() {
                   ? loadingUsage
                     ? Locale.Settings.Usage.IsChecking
                     : Locale.Settings.Usage.SubTitle(
-                        usage?.used ?? "[?]",
-                        usage?.subscription ?? "[?]",
-                      )
+                      usage?.used ?? "[?]",
+                      usage?.subscription ?? "[?]",
+                    )
                   : Locale.Settings.Usage.NoAccess
               }
             >
@@ -1196,6 +1199,6 @@ export function Settings() {
 
         <DangerItems />
       </div>
-    </ErrorBoundary>
+    </ErrorBoundary >
   );
 }

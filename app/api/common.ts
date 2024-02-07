@@ -52,7 +52,7 @@ export async function requestOpenai(req: NextRequest) {
     () => {
       controller.abort();
     },
-    10 * 60 * 1000,
+    20 * 60 * 1000,
   );
 
   if (serverConfig.isAzure) {

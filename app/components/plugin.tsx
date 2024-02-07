@@ -163,13 +163,11 @@ export function PluginPage() {
   const chatStore = useChatStore();
 
   const currentLang = getLang();
-  const supportedLangs = ["cn", "ru"];
+  const supportedLangs = ['cn', 'ru'];
   const allPlugins = pluginStore
     .getAll()
-    .filter((m) =>
-      supportedLangs.includes(currentLang)
-        ? m.lang === currentLang
-        : m.lang === "en",
+    .filter(
+      (m) => supportedLangs.includes(currentLang) ? m.lang === currentLang : m.lang === 'en'
     );
 
   const [searchPlugins, setSearchPlugins] = useState<Plugin[]>([]);
@@ -180,9 +178,7 @@ export function PluginPage() {
   const onSearch = (text: string) => {
     setSearchText(text);
     if (text.length > 0) {
-      const result = allPlugins.filter((m) =>
-        m.name.toLowerCase().includes(text.toLowerCase()),
-      );
+      const result = allPlugins.filter((m) => m.name.includes(text));
       setSearchPlugins(result);
     } else {
       setSearchPlugins(allPlugins);

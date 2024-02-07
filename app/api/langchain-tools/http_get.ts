@@ -16,7 +16,7 @@ export class HttpGetTool extends Tool implements RequestTool {
 
   maxOutputLength = Infinity;
 
-  timeout = 10000;
+  timeout = 240000;
 
   constructor(
     public headers: Headers = {},
@@ -53,7 +53,7 @@ export class HttpGetTool extends Tool implements RequestTool {
   async fetchWithTimeout(
     resource: RequestInfo | URL,
     options = {},
-    timeout: number = 30000,
+    timeout: number = 240000,
   ) {
     const controller = new AbortController();
     const id = setTimeout(() => controller.abort(), timeout);
