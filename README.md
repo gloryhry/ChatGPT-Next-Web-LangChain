@@ -238,13 +238,13 @@ Azure Api 版本，你可以在这里找到：[Azure 文档](https://learn.micro
 
 > ⚠️ 注意：docker 版本在大多数时间都会落后最新的版本 1 到 2 天，所以部署后会持续出现“存在更新”的提示，属于正常现象。
 >
-> 也可以使用镜像 `gosuto/chatgpt-next-web-langchain:nightly`，该镜像为每日更新。
+> 也可以使用镜像 `yangclivia/chatgpt-next-web-langchain:nightly`，该镜像为每日更新。
 
 ```shell
 docker run -d -p 3000:3000 \
    -e OPENAI_API_KEY="sk-xxxx" \
    -e CODE="页面访问密码" \
-   gosuto/chatgpt-next-web-langchain
+   yangclivia/chatgpt-next-web-langchain
 ```
 
 你也可以指定 proxy：
@@ -255,7 +255,7 @@ docker run -d -p 3000:3000 \
    -e CODE="页面访问密码" \
    --net=host \
    -e PROXY_URL="http://127.0.0.1:7890" \
-   gosuto/chatgpt-next-web-langchain
+   yangclivia/chatgpt-next-web-langchain
 ```
 
 如果你的本地代理需要账号密码，可以使用：
