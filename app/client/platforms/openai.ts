@@ -113,6 +113,7 @@ export class ChatGPTApi implements LLMApi {
 
           const extensionToMIME: MIMEMap = {
             'png': 'image/png',
+            'jpeg': 'image/jpeg',
             'jpg': 'image/jpeg',
             'webp': 'image/webp',
             'gif': 'image/gif',
@@ -186,7 +187,7 @@ export class ChatGPTApi implements LLMApi {
             }
           } catch (error) {
             // 使用通用的MIME类型
-            mimeType = 'text/plain';
+            mimeType = 'application/octet-stream';
           }
           message.content.push({
             type: "image_url",
