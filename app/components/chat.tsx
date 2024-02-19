@@ -373,17 +373,17 @@ function ChatAction(props: {
       style={
         props.icon && !props.loding
           ? ({
-            "--icon-width": `${width.icon}px`,
-            "--full-width": `${width.full}px`,
-            ...props.style,
-          } as React.CSSProperties)
+              "--icon-width": `${width.icon}px`,
+              "--full-width": `${width.full}px`,
+              ...props.style,
+            } as React.CSSProperties)
           : props.loding
-            ? ({
+          ? ({
               "--icon-width": `30px`,
               "--full-width": `30px`,
               ...props.style,
             } as React.CSSProperties)
-            : props.style
+          : props.style
       }
     >
       {props.icon ? (
@@ -609,7 +609,7 @@ export function ChatActions(props: {
 
         {config.pluginConfig.enable &&
           /^gpt(?!.*03\d{2}$).*$/.test(currentModel) &&
-          !currentModel.includes("vision") && (
+          currentModel != "gpt-4-vision-preview" && (
             <ChatAction
               onClick={switchUsePlugins}
               text={
@@ -623,13 +623,13 @@ export function ChatActions(props: {
         {currentModel.includes("vision") && (
           <ChatAction
             onClick={selectImage}
-            text="选择文档"
+            text="选择图片"
             loding={uploadLoading}
             icon={<UploadIcon />}
             innerNode={
               <input
                 type="file"
-                accept="*/*"
+                accept=".png,.jpg,.webp,.jpeg"
                 id="chat-image-file-select-upload"
                 style={{ display: "none" }}
                 onChange={onImageSelected}
@@ -1031,28 +1031,28 @@ function _Chat() {
       .concat(
         isLoading
           ? [
-            {
-              ...createMessage({
-                role: "assistant",
-                content: "……",
-              }),
-              preview: true,
-            },
-          ]
+              {
+                ...createMessage({
+                  role: "assistant",
+                  content: "……",
+                }),
+                preview: true,
+              },
+            ]
           : [],
       )
       .concat(
         userInput.length > 0 && config.sendPreviewBubble
           ? [
-            {
-              ...createMessage({
-                role: "user",
-                content: userInput,
-                image_url: userImage?.fileUrl,
-              }),
-              preview: true,
-            },
-          ]
+              {
+                ...createMessage({
+                  role: "user",
+                  content: userInput,
+                  image_url: userImage?.fileUrl,
+                }),
+                preview: true,
+              },
+            ]
           : [],
       );
   }, [
@@ -1149,7 +1149,7 @@ function _Chat() {
         if (payload.key || payload.url) {
           showConfirm(
             Locale.URLCommand.Settings +
-            `\n${JSON.stringify(payload, null, 4)}`,
+              `\n${JSON.stringify(payload, null, 4)}`,
           ).then((res) => {
             if (!res) return;
             if (payload.key) {
@@ -1412,7 +1412,7 @@ function _Chat() {
                       defaultShow={i >= messages.length - 6}
                     />
                   </div>
-                  {!isUser && message?.model?.includes("vision") && (
+                  {!isUser && message.model?.includes("vision") && (
                     <div
                       className={[
                         styles["chat-message-actions"],
