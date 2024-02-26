@@ -215,6 +215,10 @@ Google Gemini Pro Api Url.
 
 ### `AZURE_URL` （可选）
 
+### `NEXT_PUBLIC_ENABLE_BASE64` （可选）
+
+如果你想发送信息传入文件的base64而不是文件url的话，将此环境变量设置为 1 即可。
+
 > 形如：https://{azure-resource-url}/openai/deployments
 >
 > ⚠️ 注意：这里与原项目配置不同，不需要指定 {deploy-name}，将模型名修改为 {deploy-name} 即可切换不同的模型
