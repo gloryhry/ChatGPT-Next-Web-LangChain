@@ -193,7 +193,8 @@ export class ChatGPTApi implements LLMApi {
             image_url_data = `data:${mimeType};base64,${base64Data}`
           }
           else {
-            var url = window.location.protocol + "//" + window.location.hostname;
+            var port = window.location.port ? ':' + window.location.port : '';
+            var url = window.location.protocol + "//" + window.location.hostname + port;
             image_url_data = encodeURI(`${url}${v.image_url}`)
           }
           message.content.push({
