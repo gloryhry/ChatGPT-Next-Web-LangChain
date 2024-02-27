@@ -74,7 +74,12 @@ function getMimeType(filePath: string): string {
     throw new Error('Invalid file path.');
   }
   const extension = filePath.split('.').pop();
-  return mimeTypeMap[extension] || 'application/octet-stream';
+  if (extension) {
+    return mimeTypeMap[extension] || 'application/octet-stream';
+  } else {
+    return 'application/octet-stream';
+  }
+
 }
 
 async function handle(
