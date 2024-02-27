@@ -73,20 +73,9 @@ function getMimeType(filePath: string): string {
   if (typeof filePath !== 'string' || filePath.trim() === '') {
     throw new Error('Invalid file path.');
   }
-
-  const lastDotIndex = filePath.lastIndexOf('.');
-  console.log(lastDotIndex);
-
-  // Check if extension exists
-  if (lastDotIndex === -1 || lastDotIndex === filePath.length - 1) {
-    return 'application/octet-stream';
-  }
-
-  const extension = filePath.slice(lastDotIndex);
+  const extension = filePath.split('.').pop();
   return mimeTypeMap[extension] || 'application/octet-stream';
 }
-
-
 
 async function handle(
   req: NextRequest,
@@ -97,10 +86,8 @@ async function handle(
   }
 
   try {
-    console.log(params);
     const serverConfig = getServerSideConfig();
     const filePath = params.path[0];
-    console.log(filePath);
     const mimeType = getMimeType(filePath); 
 
     if (serverConfig.isStoreFileToLocal) {
@@ -114,7 +101,7 @@ async function handle(
       var file = await S3FileStorage.get(filePath);
       return new Response(file?.transformToWebStream(), {
         headers: {
-          "Content-Type": mimeType, // 使用获取到的MIME类型
+          "Content-Type": mimeType, 
         },
       });
     }
