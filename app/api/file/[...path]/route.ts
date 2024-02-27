@@ -98,6 +98,7 @@ async function handle(
   try {
     const serverConfig = getServerSideConfig();
     const filePath = params.path[0];
+    console.log(filePath);
     const mimeType = getMimeType(filePath); // 使用自定义函数获取MIME类型
 
     if (serverConfig.isStoreFileToLocal) {
