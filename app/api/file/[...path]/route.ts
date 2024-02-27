@@ -75,6 +75,7 @@ function getMimeType(filePath: string): string {
   }
 
   const lastDotIndex = filePath.lastIndexOf('.');
+  console.log(lastDotIndex);
 
   // Check if extension exists
   if (lastDotIndex === -1 || lastDotIndex === filePath.length - 1) {
@@ -99,7 +100,7 @@ async function handle(
     console.log(params);
     const serverConfig = getServerSideConfig();
     const filePath = params.path[0];
-
+    console.log(filePath);
     const mimeType = getMimeType(filePath); 
 
     if (serverConfig.isStoreFileToLocal) {
@@ -111,7 +112,6 @@ async function handle(
       });
     } else {
       var file = await S3FileStorage.get(filePath);
-      console.log(filePath);
       return new Response(file?.transformToWebStream(), {
         headers: {
           "Content-Type": mimeType, // 使用获取到的MIME类型
