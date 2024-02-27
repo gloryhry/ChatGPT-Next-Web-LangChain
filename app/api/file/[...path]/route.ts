@@ -3,8 +3,13 @@ import LocalFileStorage from "@/app/utils/local_file_storage";
 import S3FileStorage from "@/app/utils/s3_file_storage";
 import { NextRequest, NextResponse } from "next/server";
 
+
+interface MimeTypeMap {
+  [extension: string]: string;
+}
+
 // 创建一个文件扩展名到MIME类型的映射
-const mimeTypeMap = {
+const mimeTypeMap: MimeTypeMap = {
   'png': 'image/png',
   'jpg': 'image/jpeg',
   'webp': 'image/webp',
@@ -121,4 +126,3 @@ export const GET = handle;
 
 export const runtime = "nodejs";
 export const revalidate = 0;
-
