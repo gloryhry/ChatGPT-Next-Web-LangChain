@@ -96,20 +96,22 @@ async function handle(
   }
 
   try {
+    console.log(params);
     const serverConfig = getServerSideConfig();
     const filePath = params.path[0];
-    console.log(filePath);
-    const mimeType = getMimeType(filePath); // 使用自定义函数获取MIME类型
+
+    const mimeType = getMimeType(filePath); 
 
     if (serverConfig.isStoreFileToLocal) {
       var fileBuffer = await LocalFileStorage.get(filePath);
       return new Response(fileBuffer, {
         headers: {
-          "Content-Type": mimeType, // 使用获取到的MIME类型
+          "Content-Type": mimeType, 
         },
       });
     } else {
       var file = await S3FileStorage.get(filePath);
+      console.log(filePath);
       return new Response(file?.transformToWebStream(), {
         headers: {
           "Content-Type": mimeType, // 使用获取到的MIME类型
@@ -127,3 +129,4 @@ export const GET = handle;
 
 export const runtime = "nodejs";
 export const revalidate = 0;
+
