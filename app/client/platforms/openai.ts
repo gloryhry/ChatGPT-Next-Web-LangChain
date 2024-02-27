@@ -1,4 +1,3 @@
-"use client";
 import {
   ApiPath,
   DEFAULT_API_HOST,
@@ -40,6 +39,7 @@ export class ChatGPTApi implements LLMApi {
   private disableListModels = true;
 
   path(path: string, model?: string): string {
+
     const accessStore = useAccessStore.getState();
 
     const isAzure = accessStore.provider === ServiceProvider.Azure;
@@ -54,9 +54,7 @@ export class ChatGPTApi implements LLMApi {
 
     if (baseUrl.length === 0) {
       const isApp = !!getClientConfig()?.isApp;
-      baseUrl = isApp
-        ? DEFAULT_API_HOST + "/proxy" + ApiPath.OpenAI
-        : ApiPath.OpenAI;
+      baseUrl = isApp ? DEFAULT_API_HOST : ApiPath.OpenAI;
     }
 
     if (baseUrl.endsWith("/")) {
@@ -70,8 +68,6 @@ export class ChatGPTApi implements LLMApi {
       path = makeAzurePath(path, accessStore.azureApiVersion);
       return [baseUrl, model, path].join("/");
     }
-
-    console.log("[Proxy Endpoint] ", baseUrl, path);
 
     return [baseUrl, path].join("/");
   }
@@ -177,7 +173,7 @@ export class ChatGPTApi implements LLMApi {
             try {
               // 使用正则表达式获取文件后缀
               const match = v.image_url.match(/\.(\w+)$/);
-              if (match) {
+              if (match && match[1]) {
                 const fileExtension = match[1].toLowerCase();
                 mimeType = extensionToMIME[fileExtension];
                 if (!mimeType) {
@@ -193,6 +189,11 @@ export class ChatGPTApi implements LLMApi {
             image_url_data = `data:${mimeType};base64,${base64Data}`
           }
           else {
+            const match = v.image_url.match(/\.(\w+)$/);
+            if (match && match[1]) {
+                const fileExtension = match[1].toLowerCase();
+                v.image_url = v.image_url.replace(/\.\w+$/, '.' + fileExtension);
+            }
             var port = window.location.port ? ':' + window.location.port : '';
             var url = window.location.protocol + "//" + window.location.hostname + port;
             image_url_data = encodeURI(`${url}${v.image_url}`)
@@ -214,6 +215,7 @@ export class ChatGPTApi implements LLMApi {
         }),
       );
     }
+
     const modelConfig = {
       ...useAppConfig.getState().modelConfig,
       ...useChatStore.getState().currentSession().mask.modelConfig,
