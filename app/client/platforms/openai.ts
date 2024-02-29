@@ -106,7 +106,7 @@ export class ChatGPTApi implements LLMApi {
           let image_url_data = "";
           if (process.env.NEXT_PUBLIC_ENABLE_BASE64) {
             var base64Data = await getImageBase64Data(v.image_url);
-            let mimeType: string | undefined;
+            let mimeType: string | null;
             try {
               // 使用正则表达式获取文件后缀
               const match = v.image_url.match(/\.(\w+)$/);
