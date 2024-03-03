@@ -623,7 +623,7 @@ export function ChatActions(props: {
         {(currentModel.includes("vision") || currentModel.includes("gizmo")) && (
           <ChatAction
             onClick={selectImage}
-            text="选择图片"
+            text="选择文件"
             loding={uploadLoading}
             icon={<UploadIcon />}
             innerNode={
