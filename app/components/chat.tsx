@@ -538,7 +538,7 @@ export function ChatActions(props: {
         }
       }
     };
-    if (currentModel.includes("vision")) {
+    if (currentModel.includes("vision") || currentModel.includes("gizmo")) {
       window.addEventListener("paste", onPaste);
       return () => {
         window.removeEventListener("paste", onPaste);
@@ -609,7 +609,7 @@ export function ChatActions(props: {
 
         {config.pluginConfig.enable &&
           /^gpt(?!.*03\d{2}$).*$/.test(currentModel) &&
-          currentModel != "gpt-4-vision-preview" && (
+          (!currentModel.includes("vision") && !currentModel.includes("gizmo")) && (
             <ChatAction
               onClick={switchUsePlugins}
               text={
@@ -620,7 +620,7 @@ export function ChatActions(props: {
               icon={usePlugins ? <EnablePluginIcon /> : <DisablePluginIcon />}
             />
           )}
-        {currentModel.includes("vision") && (
+        {(currentModel.includes("vision") || currentModel.includes("gizmo")) && (
           <ChatAction
             onClick={selectImage}
             text="选择图片"
@@ -1412,7 +1412,7 @@ function _Chat() {
                       defaultShow={i >= messages.length - 6}
                     />
                   </div>
-                  {!isUser && message.model?.includes("vision") && (
+                  {!isUser && (message.model?.includes("vision") || message.model?.includes("gizmo")) && (
                     <div
                       className={[
                         styles["chat-message-actions"],
