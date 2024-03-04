@@ -34,13 +34,13 @@ export enum Theme {
 export const DEFAULT_CONFIG = {
   lastUpdate: Date.now(), // timestamp, to merge state
 
-  submitKey: SubmitKey.Enter,
+  submitKey: SubmitKey.MetaEnter,
   avatar: "1f603",
   fontSize: 14,
   theme: Theme.Auto as Theme,
   tightBorder: !!getClientConfig()?.isApp,
   sendPreviewBubble: true,
-  enableAutoGenerateTitle: false,
+  enableAutoGenerateTitle: true,
   sidebarWidth: DEFAULT_SIDEBAR_WIDTH,
 
   disablePromptHint: false,
@@ -55,13 +55,13 @@ export const DEFAULT_CONFIG = {
     model: "gpt-3.5-turbo-0125" as ModelType,
     temperature: 0.5,
     top_p: 1,
-    max_tokens: 8000,
+    max_tokens: 6000,
     presence_penalty: 0,
     frequency_penalty: 0,
     sendMemory: true,
     historyMessageCount: 6,
-    compressMessageLengthThreshold: 3000,
-    enableInjectSystemPrompts: false,
+    compressMessageLengthThreshold: 4000,
+    enableInjectSystemPrompts: true,
     template: DEFAULT_INPUT_TEMPLATE,
   },
 
