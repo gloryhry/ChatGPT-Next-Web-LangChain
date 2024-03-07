@@ -359,6 +359,10 @@ const cn = {
       Title: "频率惩罚度 (frequency_penalty)",
       SubTitle: "值越大，越有可能降低重复字词",
     },
+    UpdateType: {
+      Title: "上传类型",
+      SubTitle: "是否上传Base64格式消息",
+    },
     Plugin: {
       Enable: {
         Title: "启用插件",

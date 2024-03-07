@@ -28,6 +28,7 @@ export interface LLMConfig {
   stream?: boolean;
   presence_penalty?: number;
   frequency_penalty?: number;
+  updateTypes?: boolean;
 }
 
 export interface LLMAgentConfig {

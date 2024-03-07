@@ -104,7 +104,7 @@ export class ChatGPTApi implements LLMApi {
         });
         if (v.image_url) {
           let image_url_data = "";
-          if (process.env.NEXT_PUBLIC_ENABLE_BASE64) {
+          if (options.config.updateTypes) {
             var base64Data = await getImageBase64Data(v.image_url);
             let mimeType: string | null;
             try {
@@ -347,6 +347,7 @@ export class ChatGPTApi implements LLMApi {
       baseUrl: baseUrl,
       maxIterations: options.agentConfig.maxIterations,
       returnIntermediateSteps: options.agentConfig.returnIntermediateSteps,
+      updateTypes: modelConfig.updateTypes,
       useTools: options.agentConfig.useTools,
     };
 
