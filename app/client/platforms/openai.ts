@@ -77,7 +77,7 @@ export class ChatGPTApi implements LLMApi {
     return res.choices?.at(0)?.message?.content ?? "";
   }
 
-    async chat(options: ChatOptions) {
+  async chat(options: ChatOptions) {
     const messages: any[] = [];
     const accessStore = useAccessStore.getState();
 
