@@ -77,8 +77,9 @@ export class ChatGPTApi implements LLMApi {
     return res.choices?.at(0)?.message?.content ?? "";
   }
 
-  async chat(options: ChatOptions) {
+    async chat(options: ChatOptions) {
     const messages: any[] = [];
+    const accessStore = useAccessStore.getState();
 
     const getImageBase64Data = async (url: string) => {
       const response = await axios.get(url, { responseType: "arraybuffer" });
@@ -98,13 +99,9 @@ export class ChatGPTApi implements LLMApi {
           role: v.role,
           content: [],
         };
-        message.content.push({
-          type: "text",
-          text: v.content,
-        });
         if (v.image_url) {
           let image_url_data = "";
-          if (options.config.updateTypes) {
+          if (options.config.updateTypes && !options.config.model.includes("moomshot")) {
             var base64Data = await getImageBase64Data(v.image_url);
             let mimeType: string | null;
             try {
@@ -128,21 +125,48 @@ export class ChatGPTApi implements LLMApi {
           else {
             const match = v.image_url.match(/\.(\w+)$/);
             if (match && match[1]) {
-                const fileExtension = match[1].toLowerCase();
-                v.image_url = v.image_url.replace(/\.\w+$/, '.' + fileExtension);
+              const fileExtension = match[1].toLowerCase();
+              v.image_url = v.image_url.replace(/\.\w+$/, '.' + fileExtension);
             }
             var port = window.location.port ? ':' + window.location.port : '';
             var url = window.location.protocol + "//" + window.location.hostname + port;
             image_url_data = encodeURI(`${url}${v.image_url}`)
           }
-          message.content.push({
-            type: "image_url",
-            image_url: {
-              url: `${image_url_data}`,
-            },
-          });
+          if (options.config.model.includes("moonshot")) {
+            messages.push({
+              role: v.role,
+              content: `${image_url_data}` + v.content,
+            });
+          }
+          else {
+            message.content.push({
+              type: "text",
+              text: v.content,
+            });
+            message.content.push({
+              type: "image_url",
+              image_url: {
+                url: `${image_url_data}`,
+              },
+            });
+            messages.push(message);
+          }
         }
-        messages.push(message);
+        else {
+          if (options.config.model.includes("moonshot")) {
+            messages.push({
+              role: v.role,
+              content: v.content,
+            });
+          }
+          else {
+            message.content.push({
+              type: "text",
+              text: v.content,
+            });
+            messages.push(message);
+          }
+        }
       }
     } else {
       options.messages.map((v) =>
