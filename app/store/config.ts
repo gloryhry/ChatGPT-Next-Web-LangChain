@@ -56,7 +56,7 @@ export const DEFAULT_CONFIG = {
     historyMessageCount: 4,
     compressMessageLengthThreshold: 1000,
     enableInjectSystemPrompts: true,
-    updateTypes: false,
+    updateTypes: true,
     template: DEFAULT_INPUT_TEMPLATE,
   },
 
@@ -170,9 +170,6 @@ export const useAppConfig = createPersistStore(
       if (version < 3.8) {
         state.lastUpdate = Date.now();
       }
-
-      state.modelConfig.updateTypes = true;
-      
       return state as any;
     },
   },
