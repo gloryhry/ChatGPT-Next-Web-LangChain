@@ -99,9 +99,13 @@ export class ChatGPTApi implements LLMApi {
           role: v.role,
           content: [],
         };
+        message.content.push({
+          type: "text",
+          text: v.content,
+        });
         if (v.image_url) {
           let image_url_data = "";
-          if (options.config.updateTypes && !options.config.model.includes("moomshot")) {
+          if (options.config.updateTypes && options.config.model.includes("coze")) {
             var base64Data = await getImageBase64Data(v.image_url);
             let mimeType: string | null;
             try {
@@ -132,41 +136,14 @@ export class ChatGPTApi implements LLMApi {
             var url = window.location.protocol + "//" + window.location.hostname + port;
             image_url_data = encodeURI(`${url}${v.image_url}`)
           }
-          if (options.config.model.includes("moonshot")) {
-            messages.push({
-              role: v.role,
-              content: `<url id="" type="url" status="" title="" wc="">${image_url_data}</url>   ${v.content}`,
-            });
-          }
-          else {
-            message.content.push({
-              type: "text",
-              text: v.content,
-            });
-            message.content.push({
-              type: "image_url",
-              image_url: {
-                url: `${image_url_data}`,
-              },
-            });
-            messages.push(message);
-          }
+          message.content.push({
+            type: "image_url",
+            image_url: {
+              url: `${image_url_data}`,
+            },
+          });
         }
-        else {
-          if (options.config.model.includes("moonshot")) {
-            messages.push({
-              role: v.role,
-              content: v.content,
-            });
-          }
-          else {
-            message.content.push({
-              type: "text",
-              text: v.content,
-            });
-            messages.push(message);
-          }
-        }
+        messages.push(message);
       }
     } else {
       options.messages.map((v) =>
@@ -199,8 +176,16 @@ export class ChatGPTApi implements LLMApi {
       // max_tokens: Math.max(modelConfig.max_tokens, 1024),
       // Please do not ask me why not send max_tokens, no reason, this param is just shit, I dont want to explain anymore.
     };
-
-    console.log("[Request] openai payload: ", requestPayload);
+    // 用于隐藏传参变量
+    const moonshotPayload = {
+      messages,
+      stream: options.config.stream,
+      model: modelConfig.model,
+      use_search:
+        modelConfig.model.includes("vision")
+          ? false
+          : true,
+    }
 
     const shouldStream = !!options.config.stream;
     const controller = new AbortController();
@@ -214,6 +199,13 @@ export class ChatGPTApi implements LLMApi {
         signal: controller.signal,
         headers: getHeaders(),
       };
+      if (modelConfig.model.includes("moonshot")) {
+        console.log("[Request] moonshot payload: ", moonshotPayload);
+        chatPayload.body = JSON.stringify(moonshotPayload)
+      }
+      else {
+        console.log("[Request] openai payload: ", requestPayload);
+      }
 
       // make a fetch request
       const requestTimeoutId = setTimeout(
