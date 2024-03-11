@@ -170,13 +170,8 @@ export const useAppConfig = createPersistStore(
       if (version < 3.8) {
         state.lastUpdate = Date.now();
       }
-      
-      if(process.env.NEXT_PUBLIC_ENABLE_BASE64){
-        state.modelConfig.updateTypes = true;
-      }
-      else{
-        state.modelConfig.updateTypes = false;
-      }
+
+      state.modelConfig.updateTypes = true;
       
       return state as any;
     },
