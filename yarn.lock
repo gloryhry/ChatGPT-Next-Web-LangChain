@@ -2202,13 +2202,16 @@
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
-"@langchain/cohere@^0.0.7":
-  version "0.0.7"
-  resolved "https://registry.yarnpkg.com/@langchain/cohere/-/cohere-0.0.7.tgz#e9b4ce0b9eac15d87f0843203f08091b854aa880"
-  integrity sha512-ICSrSOT6FzSbR+xnbkP6BxXhuom1ViPRiy8K8KrL6bHbTiR5v1UnpskTWRpyhQS1GA6+3t1gp7XHxB5CZzLyqQ==
+"@langchain/cohere@^0.2.2":
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/@langchain/cohere/-/cohere-0.2.2.tgz#ce42565f023ea8cf8e89ffbb51d33871cd0ea4a8"
+  integrity sha512-XbH6vBnPz0dmJaTMKMFriFhh4eYiajYrEg7Jr0bdejj7s7lxhST92znNrJezi76LjSTtDQo3PyLBKDktk8OxKw==
   dependencies:
-    "@langchain/core" "~0.1"
-    cohere-ai "^7.9.3"
+    "@langchain/core" ">=0.2.21 <0.3.0"
+    cohere-ai "^7.10.5"
+    uuid "^10.0.0"
+    zod "^3.23.8"
+    zod-to-json-schema "^3.23.1"
 
 "@langchain/community@0.0.57", "@langchain/community@~0.0.47":
   version "0.0.57"
@@ -2224,7 +2227,7 @@
     zod "^3.22.3"
     zod-to-json-schema "^3.22.5"
 
-"@langchain/core@0.1.63", "@langchain/core@>0.1.56 <0.3.0", "@langchain/core@>0.2.0 <0.3.0", "@langchain/core@~0.1", "@langchain/core@~0.1.60":
+"@langchain/core@0.1.63", "@langchain/core@>0.1.56 <0.3.0", "@langchain/core@>0.2.0 <0.3.0", "@langchain/core@>=0.2.21 <0.3.0", "@langchain/core@~0.1", "@langchain/core@~0.1.60":
   version "0.1.63"
   resolved "https://registry.yarnpkg.com/@langchain/core/-/core-0.1.63.tgz#33cc48877739e9fdb5885fbd4b16fd08d1597050"
   integrity sha512-+fjyYi8wy6x1P+Ee1RWfIIEyxd9Ee9jksEwvrggPwwI/p45kIDTdYTblXsM13y4mNWTiACyLSdbwnPaxxdoz+w==
@@ -4190,16 +4193,16 @@ client-only@0.0.1:
   resolved "https://registry.yarnpkg.com/client-only/-/client-only-0.0.1.tgz#38bba5d403c41ab150bff64a95c85013cf73bca1"
   integrity sha512-IV3Ou0jSMzZrd3pZ48nLkT9DA7Ag1pnPzaiQhpW7c3RbcqqzvzzVu+L8gfqMp/8IM2MQtSiqaCxrrcfu8I8rMA==
 
-cohere-ai@^7.9.3:
-  version "7.11.0"
-  resolved "https://registry.yarnpkg.com/cohere-ai/-/cohere-ai-7.11.0.tgz#ba214ea98b4bd4e1e1d59a66f5eb3bb604494c79"
-  integrity sha512-rtBx1J4ifcg+zbl8o4yN7pzJ0akczj68wmMue1beqelVUEjbcw3uwP3dQ3hR14y41J3CDnCx+eYAh0oizx04fQ==
+cohere-ai@^7.10.5:
+  version "7.11.2"
+  resolved "https://registry.yarnpkg.com/cohere-ai/-/cohere-ai-7.11.2.tgz#6464afa4ed36f4eea8cd80b768a397586cec4bb9"
+  integrity sha512-IImDbZLg+kApTH9KswRAEGd0dRuZiChnsqC8gf6RepuklLuSxEkqto4uwSQQSUTj50Ns4uN7yaxzVyS6OmLpIg==
   dependencies:
     "@aws-sdk/client-sagemaker" "^3.583.0"
     "@aws-sdk/credential-providers" "^3.583.0"
     "@aws-sdk/protocol-http" "^3.374.0"
     "@aws-sdk/signature-v4" "^3.374.0"
-    form-data "4.0.0"
+    form-data "^4.0.0"
     form-data-encoder "^4.0.2"
     formdata-node "^6.0.3"
     js-base64 "3.7.2"
@@ -5755,7 +5758,7 @@ form-data-encoder@^4.0.2:
   resolved "https://registry.yarnpkg.com/form-data-encoder/-/form-data-encoder-4.0.2.tgz#dd286fd5f9049e8ded1d44ce427f5e29185c7c12"
   integrity sha512-KQVhvhK8ZkWzxKxOr56CPulAhH3dobtuQ4+hNQ+HekH/Wp5gSOafqRAeTphQUJAIk0GBvHZgJ2ZGRWd5kphMuw==
 
-form-data@4.0.0, form-data@^4.0.0:
+form-data@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/form-data/-/form-data-4.0.0.tgz#93919daeaf361ee529584b9b31664dc12c9fa452"
   integrity sha512-ETEklSGi5t0QMZuiXoA/Q6vcnxcLQP5vdugSpuAyi6SVGi2clPPp+xgEhuMaHC+zGgn31Kd235W35f7Hykkaww==
@@ -9238,6 +9241,11 @@ util-deprecate@^1.0.1, util-deprecate@~1.0.1:
   resolved "https://registry.yarnpkg.com/util-deprecate/-/util-deprecate-1.0.2.tgz#450d4dc9fa70de732762fbd2d4a28981419a0ccf"
   integrity sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==
 
+uuid@^10.0.0:
+  version "10.0.0"
+  resolved "https://registry.yarnpkg.com/uuid/-/uuid-10.0.0.tgz#5a95aa454e6e002725c79055fd42aaba30ca6294"
+  integrity sha512-8XkAphELsDnEGrDxUOHB3RGvXz6TeuYSGEZBOjtTtPm2lwhGBjLgOzLHB63IUWfBpNucQjND6d3AOudO+H3RWQ==
+
 uuid@^9.0.0, uuid@^9.0.1:
   version "9.0.1"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-9.0.1.tgz#e188d4c8853cc722220392c424cd637f32293f30"
@@ -9495,12 +9503,12 @@ yocto-queue@^0.1.0:
   resolved "https://registry.yarnpkg.com/yocto-queue/-/yocto-queue-0.1.0.tgz#0294eb3dee05028d31ee1a5fa2c556a6aaf10a1b"
   integrity sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==
 
-zod-to-json-schema@^3.22.3, zod-to-json-schema@^3.22.5:
-  version "3.23.1"
-  resolved "https://registry.yarnpkg.com/zod-to-json-schema/-/zod-to-json-schema-3.23.1.tgz#5225925b8ed5fa20096bd99be076c4b29b53d309"
-  integrity sha512-oT9INvydob1XV0v1d2IadrR74rLtDInLvDFfAa1CG0Pmg/vxATk7I2gSelfj271mbzeM4Da0uuDQE/Nkj3DWNw==
+zod-to-json-schema@^3.22.3, zod-to-json-schema@^3.22.5, zod-to-json-schema@^3.23.1:
+  version "3.23.2"
+  resolved "https://registry.yarnpkg.com/zod-to-json-schema/-/zod-to-json-schema-3.23.2.tgz#bc7e379c8050462538383e382964c03d8fe008f9"
+  integrity sha512-uSt90Gzc/tUfyNqxnjlfBs8W6WSGpNBv0rVsNxP/BVSMHMKGdthPYff4xtCHYloJGM0CFxFsb3NbC0eqPhfImw==
 
-zod@^3.22.3, zod@^3.22.4:
+zod@^3.22.3, zod@^3.22.4, zod@^3.23.8:
   version "3.23.8"
   resolved "https://registry.yarnpkg.com/zod/-/zod-3.23.8.tgz#e37b957b5d52079769fb8097099b592f0ef4067d"
   integrity sha512-XBx9AXhXktjUqnepgTiE5flcKIYWi/rme0Eaj+5Y0lftuGBq+jyRu/md4WnuxqgP1ubdpNCsYEYPxrzVHD8d6g==
